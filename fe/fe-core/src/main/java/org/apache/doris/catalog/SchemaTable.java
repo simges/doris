@@ -621,6 +621,17 @@ public class SchemaTable extends Table {
                                     .column("IS_ABNORMAL_PAUSE", ScalarType.createType(PrimitiveType.BOOLEAN))
                                     .build())
             )
+            .put("backend_compaction_tasks",
+                    new SchemaTable(SystemIdGenerator.getNextId(), "backend_compaction_tasks", TableType.SCHEMA,
+                        builder().column("BE_ID", ScalarType.createType(PrimitiveType.INT))
+                                .column("FE_HOST", ScalarType.createVarchar(256))
+                                .column("BASE_COMPACTION_CONCURRENCY", ScalarType.createType(PrimitiveType.INT))
+                                .column("CUMULATIVE_COMPACTION_CONCURRENCY", ScalarType.createType(PrimitiveType.INT))
+                                .column("MANUAL_COMPACTION_CONCURRENCY", ScalarType.createType(PrimitiveType.INT))
+                                .column("LATEST_COMPACTION_SCORE", ScalarType.createType(PrimitiveType.INT))
+                                .column("CANDIDATE_MAX_SCORE", ScalarType.createType(PrimitiveType.INT))
+                                .column("MANUAL_COMPACTION_CANDIDATES_NUM", ScalarType.createType(PrimitiveType.INT))
+                                .build()))
             .build();
 
     private boolean fetchAllFe = false;
